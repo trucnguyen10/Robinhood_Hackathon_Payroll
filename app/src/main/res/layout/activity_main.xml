@@ -6,21 +6,44 @@
     android:id="@+id/swipe"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <include
+                android:id="@+id/mytoolbar"
+                layout="@layout/toolbar"/>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="349dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:text="Robinhood Payroll Smart Contract"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="23dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.596"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mytoolbar"
+                app:layout_constraintVertical_bias="0.333" />
 
             <TextView
                 android:id="@+id/employer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="68dp"
                 android:text="@string/contract_account_balance"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -28,24 +51,41 @@
 
             <ImageView
                 android:id="@+id/algo_icon"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginLeft="16dp"
+                android:layout_width="41dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="60dp"
                 android:src="@drawable/algo"
-                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.548"
                 app:layout_constraintLeft_toLeftOf="@id/employer"
-                app:layout_constraintTop_toBottomOf="@id/employer" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/accountBal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="152dp"
                 android:text="0"
-                android:layout_marginTop="16dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/algo_icon"
-                app:layout_constraintTop_toBottomOf="@id/employer"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/accountBal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/employee_list_item" />
 
             <ProgressBar
                 android:id="@+id/progress1"
@@ -57,39 +97,6 @@
                 app:layout_constraintRight_toRightOf="parent"
                 />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fund"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="24dp"
-                android:src="@drawable/ic_receive_24"
-                app:layout_constraintRight_toLeftOf="@id/copy"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="copy text" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/copy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                android:backgroundTint="@color/purple_200"
-                app:layout_constraintRight_toRightOf="parent"
-                android:src="@drawable/ic_baseline_content_copy_24"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="copy text" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/accountBal"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/employee_list_item" />
-
             <ProgressBar
                 android:id="@+id/progress"
                 android:visibility="gone"
@@ -99,23 +106,54 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 />
+
             <Button
                 android:id="@+id/compile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="268dp"
+                android:layout_height="57dp"
                 android:layout_margin="24dp"
-                android:backgroundTint="@color/grey"
+                android:layout_marginTop="48dp"
+                android:background="@color/blue"
                 android:padding="16dp"
                 android:text="Compile"
                 android:textColor="#000000"
+                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerview" />
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="24dp"
+                android:text="Result"
+                android:textIsSelectable="true"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/paybtn" />
+
+            <Button
+                android:id="@+id/paybtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/green"
+                android:padding="16dp"
+                android:text="Pay Employees"
+                app:layout_constraintLeft_toRightOf="@id/explore"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/compile" />
+
             <Button
                 android:id="@+id/explore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="24dp"
+                android:layout_marginTop="24dp"
                 android:backgroundTint="@color/grey"
                 android:padding="16dp"
                 android:text="View Explorer"
@@ -123,30 +161,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/paybtn"
                 app:layout_constraintTop_toBottomOf="@id/compile" />
-
-            <Button
-                android:id="@+id/paybtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                android:padding="16dp"
-                android:backgroundTint="@color/purple_500"
-                android:text="Pay Employees"
-                app:layout_constraintLeft_toRightOf="@id/explore"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/compile" />
-
-            <TextView
-                android:id="@+id/result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                android:text="Result"
-                android:textIsSelectable="true"
-                android:textSize="16sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/paybtn" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
