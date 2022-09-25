@@ -1,4 +1,18 @@
-# Algorand Sandbox
+# ALGOPAY.io
+
+This solution will guide you in developing and deploying android application using the Algorand blockchain atomic transfer and smart contract that addresses the following use case:
+
+Account creation
+
+Funding accounts
+
+Create and compile the teal program
+
+Atomic transfer signed by the sender
+
+Atomic transfer signed by a smart contract
+
+For setting up a private, local network we will be using Algorand sandbox. 
 
 This is a fast way to create and configure an Algorand development environment with [Algod](https://github.com/algorand/go-algorand) and [Indexer](https://github.com/algorand/indexer).
 
@@ -7,35 +21,6 @@ This is a fast way to create and configure an Algorand development environment w
 On a _Windows_ machine, **Docker Desktop** comes with the necessary tools. Please see the [Windows](#windows) section in getting started for more details.
 
 **Warning**: Algorand Sandbox is _not_ meant for production environments and should _not_ be used to store secure Algorand keys. Updates may reset all the data and keys that are stored.
-
-## Usage
-
-Use the **sandbox** command to interact with the Algorand Sandbox.
-
-```plain
-sandbox commands:
-  up    [config]  -> start the sandbox environment.
-  down            -> tear down the sandbox environment.
-  reset           -> reset the containers to their initial state.
-  clean           -> stops and deletes containers and data directory.
-  test            -> runs some tests to demonstrate usage.
-  enter [algod||indexer||indexer-db]
-                  -> enter the sandbox container.
-  version         -> print binary versions.
-  copyTo <file>   -> copy <file> into the algod container. Useful for offline transactions & LogicSigs plus TEAL work.
-  copyFrom <file> -> copy <file> from the algod container. Useful for offline transactions & LogicSigs plus TEAL work.
-
-algorand commands:
-  logs            -> stream algorand logs with the carpenter utility.
-  status          -> get node status.
-  goal (args)     -> run goal command like 'goal node status'.
-  tealdbg (args)  -> run tealdbg command to debug program execution.
-
-special flags for 'up' command:
-  -v|--verbose           -> display verbose output when starting standbox.
-  -s|--skip-fast-catchup -> skip catchup when connecting to real network.
-  -i|--interactive       -> start docker-compose in interactive mode.
-```
 
 Sandbox creates the following API endpoints:
 
@@ -47,6 +32,7 @@ Sandbox creates the following API endpoints:
   - token: `aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`
 - `indexer`:
   - address: `http://localhost:8980`
+
 
 ## Getting Started
 
@@ -104,48 +90,26 @@ It is recommended to use WSL 2.
 2. Install and launch Docker for Windows: https://docs.docker.com/get-docker
 3. Open "Git Bash" and follow the instruction for Ubuntu and macOS above, in the "Git Bash" terminal.
 
-##### Troubleshooting
 
-- If you see
+After setting up the environment, this is how it should look like: 
+![terminal](https://user-images.githubusercontent.com/44316521/192166505-c283f40f-dcaf-4248-842f-b1096bbdc1e1.png)
+![Presentation 2](https://user-images.githubusercontent.com/44316521/192166511-b059aa9a-545b-4fbf-aff2-f13ad5bf76b4.png)
 
-  ```plain
-  the input device is not a TTY. If you are using mintty, try prefixing the command with 'winpty'.
-  ```
+#Demo
 
-  check that you are using the latest versions of: Docker, Git for Windows, and Windows 10.
+![ui](https://user-images.githubusercontent.com/44316521/192166593-fec6dba0-27c2-4cd3-b433-ff4e181d40f6.jpg)
 
-  If this does not solve the issue, [open an issue](https://github.com/algorand/sandbox/issues) with all the versions with all the software used, as well as all the commands typed.
+# Setup Development Environment
+To get started, your android studio should be up and running. To get the code on your android studio, simply click the clone button to clone the project or download the the project. Then from Android studio click on file and  select import to import the project from your local machine.
 
-- If you see
+To successfully run this program, you need to generate/create four different accouts one for the contract owner and the remaining three for the employees. You can  create accounts using [myalgo](https://wallet.myalgo.com/access).
 
-  ```plain
-  Error response from daemon: open \\.\pipe\docker_engine_linux: The system cannot find the file specified.
-  ```
+# File Structure
+- `EmployeeAdapter` handles the recyclerview for the list of employees
+- `constants` handles constant variables used in the MainActivity and DetailActivity
+- `MainActivity` handles the main logic of the application
+- `DetailActivity` handles the detail page for each employees
+- `Employee` handles the data model
+- `EmployeeDataSource` handles dummy data/list of empployees
 
-  check that Docker is running.
 
-## Basic Configuration
-
-Sandbox supports two primary modes of operation. By default, a [private network](#private-network) will be created, which is only available from the local environment. There are also configurations available for the [public networks](#public-network) which will attempt to connect to one of the long running Algorand networks and allow interaction with it.
-
-To specify which configuration to run:
-
-```sh
-./sandbox up $CONFIG
-```
-
-Where `$CONFIG` is specified as one of the configurations in the sandbox directory.
-
-For example to run a `dev` mode network, run:
-
-```sh
-./sandbox up dev
-```
-
-To switch the configuration:
-
-```sh
-./sandbox down
-./sandbox clean
-./sandbox up $NEW_CONFIG
-```
